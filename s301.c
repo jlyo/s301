@@ -12,7 +12,7 @@
 /* http://stackoverflow.com/questions/686217/maximum-on-http-header-values */
 #define LINE_LENGTH (8 * 1024)
 
-static const char *const PROGRAM_NAME = "redirs";
+static const char *const PROGRAM_NAME = "s301";
 static const char *const DEFAULT_HOSTNAME = "localhost";
 
 static const char *const HOST_HEADER = "Host: ";
