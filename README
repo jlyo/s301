@@ -1,0 +1,31 @@
+s301
+A simple HTTP server to redirect HTTP traffic to HTTPS traffic
+
+Usage:
+s301 is designed to run from an inetd server, below are examples for inetd
+and xinetd respectively. s301 takes an optional argument specifying the
+default hostname.
+
+s301 prefers hostnames in the following order
+1. Given in the request "Host" header
+2. Given on the command line argument
+3. The result of gethostname()
+4. Statically configured DEFAULT_HOSTNAME ("localhost")
+
+#inetd
+http    stream  tcp6    nowait  nobody  /usr/local/bin/s301 MY_HOSTNAME
+
+#xinetd
+service http
+{
+    disable     = no
+    flags       = NAMEINARGS
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = nobody
+    group       = nobody
+    server      = /usr/local/bin/s301
+    server_args = s301 MY_HOSTNAME
+    bind        = ::1
+}
